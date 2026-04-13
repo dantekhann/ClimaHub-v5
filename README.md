@@ -1,50 +1,57 @@
 ClimaHub v5: Dashboard Multi-Localidade & Inteligência Geográfica
-
-O ClimaHub (evolução do Meu Clima) é uma aplicação front-end de monitoramento meteorológico em tempo real. A versão 5 marca a transição de uma ferramenta de busca simples para um painel de comparação persistente, capaz de gerenciar múltiplas localidades simultaneamente com tratamento avançado de dados geográficos.
+O ClimaHub é uma aplicação front-end de monitoramento meteorológico em tempo real. A versão 5 marca a maturidade do projeto, evoluindo de uma ferramenta de busca simples para um painel de comparação persistente, capaz de gerenciar múltiplas localidades simultaneamente com tratamento avançado de dados geográficos e cache inteligente.
 
 🚀 O que há de novo na v5?
-Diferente das versões anteriores que exibiam apenas um resultado por vez, a v5 foi reconstruída para ser um Hub.
+Diferente das versões anteriores que exibiam apenas um resultado por vez, o ClimaHub agora opera como um Dashboard de Comparação.
 
-1. Sistema de Comparação e Grid Dinâmico
-   Multi-Cards: Agora é possível adicionar várias cidades ao mesmo tempo, permitindo a comparação direta de temperaturas e condições entre diferentes regiões.
+1. Sistema de Grid Dinâmico e Controle Unificado
+Multi-Cards: Adicione várias cidades simultaneamente para comparação direta de temperatura, vento e condições climáticas.
 
-Gerenciamento de Cards: Cada card possui independência, com a função de remoção individual (botão ✕) que atualiza o layout e a memória instantaneamente.
+Controles Sincronizados: O painel de controles (Alternar Unidade e Limpar Painel) agora utiliza um layout lado a lado, otimizando o espaço vertical e aparecendo dinamicamente apenas quando há dados no grid.
+
+Gerenciamento Individual: Botões de remoção (✕) em cada card para gestão precisa do painel.
 
 2. Memória Inteligente (Cache de 1 Hora)
-   Persistência com LocalStorage: As cidades adicionadas não somem ao atualizar a página (F5). Elas ficam salvas no navegador do usuário.
+Persistência com LocalStorage: As cidades permanecem salvas mesmo após o fechamento do navegador ou atualização da página (F5).
 
-Auto-Faxina (TTL - Time to Live): Implementamos uma lógica de expiração. Se uma cidade foi adicionada há mais de 1 hora, o sistema a remove automaticamente do cache no próximo carregamento para garantir que o painel permaneça limpo e relevante.
+Auto-Faxina (TTL - Time to Live): Implementamos uma lógica de expiração. Cidades com dados em cache há mais de 60 minutos são removidas automaticamente para garantir a relevância das informações.
 
-3. Resolução de Ambiguidades (Homônimos)
-   Seleção de Localidade: Ao buscar cidades com nomes comuns (ex: Rio de Janeiro), o sistema agora apresenta uma lista de escolha detalhando Estado/Província e País, evitando que o usuário visualize os dados do local errado.
+3. Inteligência Geográfica e Resiliência de Busca
+Resolução de Homônimos: Ao buscar cidades com nomes comuns, o sistema apresenta uma lista seletiva detalhando Estado/Província e País.
 
-4. Robustez Visual e UX
-   Tratamento de Nomes Gigantes: Implementação de word-wrap e limite de linhas (line-clamp) para nomes de cidades extremamente longos, garantindo que o design nunca quebre.
+Tratamento de Nomes Compostos: Lógica de busca resiliente que aceita nomes com hífens ou caracteres especiais (ex: São-Tomé), incluindo um sistema de "fallback" (plano B) caso a API retorne vazio na primeira tentativa.
 
-Identificação Global: Cada card agora exibe a hierarquia geográfica completa: Cidade, Estado e País.
+Hierarchy-Display: Exibição clara da hierarquia geográfica completa em cada card.
 
-Modo Dia/Noite: Detecção automática via parâmetro is_day da API para exibição de ícones contextuais (☀️/🌙).
+4. Robustez Visual e UI/UX
+Anti-Quebra de Layout: Implementação de word-wrap e line-clamp para nomes de cidades extremamente longos.
+
+Inversão de Hierarquia Visual: A temperatura agora possui prioridade visual máxima, posicionada no topo do corpo do card.
+
+Feedback Visual: Modo Dia/Noite automático (☀️/🌙) e bordas dinâmicas coloridas de acordo com o código de condição climática.
 
 🧠 Lógica Técnica
-Sanitização de Input: Uso de Regex avançado para ignorar emojis e caracteres especiais, evitando erros de requisição na API.
+Sanitização Dinâmica: Uso de Regex para limpar inputs sem corromper caracteres essenciais (como hífens em nomes de cidades).
 
-Arquitetura de Dados: O sistema salva apenas as coordenadas e nomes (metadados). A temperatura é sempre buscada do zero ao carregar o card, garantindo precisão absoluta.
+Arquitetura de Dados: O LocalStorage armazena metadados e coordenadas; os dados meteorológicos são sempre requisitados em tempo real no carregamento para garantir precisão absoluta.
 
-Design: Estética Glassmorphism sobre fundo escuro (#0b0b0c) para reduzir a fadiga visual.
+Estética: Estilo Glassmorphism sobre fundo escuro (#0b0b0c) para reduzir fadiga visual e proporcionar um visual premium.
 
 📂 Estrutura do Projeto
-index.html: Dashboard com containers separados para notificações de busca e grid de exibição.
+index.html: Dashboard estruturado com containers separados para notificações de busca e grid de cards.
 
-style.css: Grid flexível, tratamento de overflow de texto e estilização de cards responsivos.
+style.css: Design responsivo, animações de entrada (slideUp) e controle fino de espaçamentos (gap control).
 
-script.js: Engine principal gerenciando Fetch API (Open-Meteo), LocalStorage e lógica de expiração por timestamp.
+script.js: Engine principal que gerencia a Fetch API (Open-Meteo), persistência de dados e lógica de expiração.
 
 🔧 Como utilizar
 Busque por uma cidade no campo de pesquisa.
 
-Se houver mais de um resultado, selecione o correto na lista exibida.
+Se houver mais de um resultado (homônimos), selecione a opção correta na lista.
 
 O card será fixado no painel. Você pode adicionar quantos desejar.
+
+Utilize os botões de controle centrais para alternar entre °C/°F ou limpar todo o histórico.
 
 Para limpar tudo, utilize o botão "Limpar Histórico" que surge ao final do grid.
 
