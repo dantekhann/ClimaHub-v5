@@ -1,0 +1,126 @@
+body {
+    background-color: #0b0b0c;
+    color: white;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    margin: 0;
+}
+
+#app {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #1a1a1c;
+    color: white;
+    width: 280px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #00d2ff;
+}
+
+button {
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    background: #00d2ff;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #00b8e6;
+}
+
+/* Lista de Seleção de Homônimos */
+.lista-selecao {
+    background: #1a1a1c;
+    border-radius: 10px;
+    margin: 15px auto;
+    max-width: 450px;
+    border: 1px solid #333;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.item-local {
+    padding: 15px;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.2s;
+}
+
+.item-local:last-child { border-bottom: none; }
+
+.item-local:hover {
+    background: #2d2d30;
+    padding-left: 20px;
+}
+
+.item-local strong { color: #00d2ff; }
+
+/* GRID DE COMPARAÇÃO */
+#weather-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* Card de Clima */
+.weather-box {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    padding: 30px 20px;
+    width: 240px;
+    position: relative;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botão de Remover Card */
+.btn-fechar {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-fechar:hover {
+    color: #ff5555;
+    transform: scale(1.2);
+}
+
+.temp-grande {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 15px 0;
+}

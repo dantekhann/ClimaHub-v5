@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador de Clima Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Comparador de <span style="color: #00d2ff;">Clima</span></h1>
+        
+        <div class="input-group">
+            <input type="text" id="cidadeInput" placeholder="Digite a cidade (ex: São-Tomé)..." autocomplete="off">
+            <button id="btnVerificar" onclick="buscarClimaReal()">Adicionar</button>
+        </div>
+
+        <div id="notificacao-container"></div>
+        
+        <div id="weather-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

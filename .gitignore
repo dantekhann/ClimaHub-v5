@@ -1,0 +1,9 @@
+# Pastas de configuração do VS Code
+.vscode/
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# Pastas de ferramentas de análise (se estiver usando)
+.qodo/
